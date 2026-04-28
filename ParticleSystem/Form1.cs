@@ -27,29 +27,35 @@ namespace ParticleSystem
                     particle.X = MousePositionX;
                     particle.Y = MousePositionY;
 
-                    particle.Direction = Particle.rand.Next(360);
-                    particle.Speed = 1 + Particle.rand.Next(10);
+                    var direction = (double)Particle.rand.Next(360);
+                    var speed = 1 + Particle.rand.Next(10);
+
+                    particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
+                    particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
+
                     particle.Radius = 2 + Particle.rand.Next(10);
                 }
                 else
                 {
-                    var directionInRadians = particle.Direction / 180 * Math.PI;
-                    particle.X += (float)(particle.Speed * Math.Cos(directionInRadians));
-                    particle.Y -= (float)(particle.Speed * Math.Sin(directionInRadians));
+                    particle.X += particle.SpeedX;
+                    particle.Y += particle.SpeedY;
                 }
             }
+
             for (var i = 0; i < 10; ++i)
             {
-                if (particles.Count < 500) 
+                if (particles.Count < 500)
                 {
-                    var particle = new Particle();
+                    var particle = new ParticleColorful();
+                    particle.FromColor = Color.Yellow;
+                    particle.ToColor = Color.FromArgb(0, Color.Magenta);
                     particle.X = MousePositionX;
                     particle.Y = MousePositionY;
                     particles.Add(particle);
                 }
                 else
                 {
-                    break; 
+                    break;
                 }
             }
         }
@@ -68,7 +74,7 @@ namespace ParticleSystem
             UpdateState();
             using (var g = Graphics.FromImage(picDisplay.Image))
             {
-                g.Clear(Color.White);
+                g.Clear(Color.Black);
                 Render(g);
             }
             picDisplay.Invalidate();
