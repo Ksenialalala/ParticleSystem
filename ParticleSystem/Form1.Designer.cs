@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             picDisplay = new PictureBox();
+            timer1 = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)picDisplay).BeginInit();
             SuspendLayout();
             // 
@@ -40,6 +42,12 @@
             picDisplay.TabIndex = 0;
             picDisplay.TabStop = false;
             // 
+            // timer1
+            // 
+            timer1.Enabled = true;
+            timer1.Interval = 40;
+            timer1.Tick += timer1_Tick;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -48,7 +56,6 @@
             Controls.Add(picDisplay);
             Name = "Form1";
             Text = "Form1";
-            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)picDisplay).EndInit();
             ResumeLayout(false);
         }
@@ -56,5 +63,6 @@
         #endregion
 
         private PictureBox picDisplay;
+        private System.Windows.Forms.Timer timer1;
     }
 }
