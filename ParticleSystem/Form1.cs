@@ -6,6 +6,9 @@ namespace ParticleSystem
     {
         List<Particle> particles = new List<Particle>();
 
+        private int MousePositionX = 0;
+        private int MousePositionY = 0;
+
         public Form1()
         {
             InitializeComponent();
@@ -24,12 +27,12 @@ namespace ParticleSystem
         {
             foreach (var particle in particles)
             {
-                particle.Life -= 1; 
+                particle.Life -= 1;
                 if (particle.Life < 0)
                 {
                     particle.Life = 20 + Particle.rand.Next(100);
-                    particle.X = picDisplay.Image.Width / 2;
-                    particle.Y = picDisplay.Image.Height / 2;
+                    particle.X = MousePositionX;
+                    particle.Y = MousePositionY;
 
                     particle.Direction = Particle.rand.Next(360);
                     particle.Speed = 1 + Particle.rand.Next(10);
@@ -63,6 +66,12 @@ namespace ParticleSystem
             }
             picDisplay.Invalidate();
 
+        }
+
+        private void picDisplay_MouseMove(object sender, MouseEventArgs e)
+        {
+            MousePositionX = e.X;
+            MousePositionY = e.Y;
         }
     }
 }
