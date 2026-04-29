@@ -6,7 +6,7 @@ namespace ParticleSystem
     public partial class Form1 : Form
     {
         List<Particle> particles = new List<Particle>();
-        Emitter emitter = new Emitter();
+        Emitter emitter;
 
         private int MousePositionX = 0;
         private int MousePositionY = 0;
@@ -16,6 +16,12 @@ namespace ParticleSystem
             InitializeComponent();
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
 
+            emitter = new TopEmitter
+            {
+                Width = picDisplay.Width,
+                GravitationY = 0.25f
+            };
+            
             emitter.impactPoints.Add(new GravityPoint
             {
                 X = (float)(picDisplay.Width * 0.25),
