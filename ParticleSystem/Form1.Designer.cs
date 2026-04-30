@@ -31,7 +31,10 @@
             components = new System.ComponentModel.Container();
             picDisplay = new PictureBox();
             timer1 = new System.Windows.Forms.Timer(components);
+            tbDirection = new TrackBar();
+            lblDirection = new Label();
             ((System.ComponentModel.ISupportInitialize)picDisplay).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbDirection).BeginInit();
             SuspendLayout();
             // 
             // picDisplay
@@ -49,21 +52,44 @@
             timer1.Interval = 40;
             timer1.Tick += timer1_Tick;
             // 
+            // tbDirection
+            // 
+            tbDirection.Location = new Point(23, 448);
+            tbDirection.Maximum = 359;
+            tbDirection.Name = "tbDirection";
+            tbDirection.Size = new Size(188, 56);
+            tbDirection.TabIndex = 1;
+            tbDirection.Scroll += tbDirection_Scroll;
+            // 
+            // lblDirection
+            // 
+            lblDirection.AutoSize = true;
+            lblDirection.Location = new Point(242, 459);
+            lblDirection.Name = "lblDirection";
+            lblDirection.Size = new Size(0, 20);
+            lblDirection.TabIndex = 2;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 516);
+            Controls.Add(lblDirection);
+            Controls.Add(tbDirection);
             Controls.Add(picDisplay);
             Name = "Form1";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)picDisplay).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbDirection).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private PictureBox picDisplay;
         private System.Windows.Forms.Timer timer1;
+        private TrackBar tbDirection;
+        private Label lblDirection;
     }
 }
