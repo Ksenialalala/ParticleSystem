@@ -49,6 +49,9 @@ namespace ParticleSystem
                 }
                 else
                 {
+                    particle.X += particle.SpeedX;
+                    particle.Y += particle.SpeedY;
+
                     foreach (var point in impactPoints)
                     {
                         point.ImpactParticle(particle);
@@ -57,8 +60,7 @@ namespace ParticleSystem
                     particle.SpeedX += GravitationX;
                     particle.SpeedY += GravitationY;
 
-                    particle.X += particle.SpeedX;
-                    particle.Y += particle.SpeedY;
+                    
                 }
             }
 
@@ -111,10 +113,14 @@ namespace ParticleSystem
             {
                 float gX = X - particle.X;
                 float gY = Y - particle.Y;
-                float r2 = (float)Math.Max(100, gX * gX + gY * gY);
 
-                particle.SpeedX += gX * Power / r2;
-                particle.SpeedY += gY * Power / r2;
+                double r = Math.Sqrt(gX * gX + gY * gY); 
+                if (r + particle.Radius < Power / 2) 
+                {
+                    float r2 = (float)Math.Max(100, gX * gX + gY * gY);
+                    particle.SpeedX += gX * Power / r2;
+                    particle.SpeedY += gY * Power / r2;
+                }
             }
 
             public override void Render(Graphics g)
