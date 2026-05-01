@@ -5,12 +5,9 @@ namespace ParticleSystem
 {
     public partial class Form1 : Form
     {
-        List<Particle> particles = new List<Particle>();
         List<Emitter> emitters = new List<Emitter>();
         Emitter emitter;
-
-        private int MousePositionX = 0;
-        private int MousePositionY = 0;
+       
 
         GravityPoint point1;
         GravityPoint point2;
@@ -50,59 +47,6 @@ namespace ParticleSystem
             emitter.impactPoints.Add(point2);
         }
 
-        private void UpdateState()
-        {
-            foreach (var particle in particles)
-            {
-                particle.Life -= 1;
-                if (particle.Life < 0)
-                {
-                    particle.Life = 20 + Particle.rand.Next(100);
-                    particle.X = MousePositionX;
-                    particle.Y = MousePositionY;
-
-                    var direction = (double)Particle.rand.Next(360);
-                    var speed = 1 + Particle.rand.Next(10);
-
-                    particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
-                    particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
-
-                    particle.Radius = 2 + Particle.rand.Next(10);
-                }
-                else
-                {
-                    particle.X += particle.SpeedX;
-                    particle.Y += particle.SpeedY;
-                }
-            }
-
-            for (var i = 0; i < 10; ++i)
-            {
-                if (particles.Count < 500)
-                {
-                    var particle = new ParticleColorful();
-                    particle.FromColor = Color.Yellow;
-                    particle.ToColor = Color.FromArgb(0, Color.Magenta);
-                    particle.X = MousePositionX;
-                    particle.Y = MousePositionY;
-                    particles.Add(particle);
-                }
-                else
-                {
-                    break;
-                }
-            }
-        }
-
-
-        private void Render(Graphics g)
-        {
-            foreach (var particle in particles)
-            {
-                particle.Draw(g);
-            }
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             emitter.UpdateState();
@@ -127,20 +71,5 @@ namespace ParticleSystem
             point2.Y = e.Y;
         }
 
-        private void tbDirection_Scroll(object sender, EventArgs e)
-        {
-            emitter.Direction = tbDirection.Value;
-            lblDirection.Text = $"{tbDirection.Value}°";
-        }
-
-        private void tbGraviton_Scroll(object sender, EventArgs e)
-        {
-            point1.Power = tbGraviton.Value;
-        }
-
-        private void tbGraviton2_Scroll(object sender, EventArgs e)
-        {
-            point2.Power = tbGraviton2.Value;
-        }
     }
 }
