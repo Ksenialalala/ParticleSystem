@@ -33,8 +33,12 @@
             timer1 = new System.Windows.Forms.Timer(components);
             tbDirection = new TrackBar();
             lblDirection = new Label();
+            tbGraviton = new TrackBar();
+            tbGraviton2 = new TrackBar();
             ((System.ComponentModel.ISupportInitialize)picDisplay).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tbDirection).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbGraviton).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbGraviton2).BeginInit();
             SuspendLayout();
             // 
             // picDisplay
@@ -69,11 +73,31 @@
             lblDirection.Size = new Size(0, 20);
             lblDirection.TabIndex = 2;
             // 
+            // tbGraviton
+            // 
+            tbGraviton.Location = new Point(285, 448);
+            tbGraviton.Maximum = 100;
+            tbGraviton.Name = "tbGraviton";
+            tbGraviton.Size = new Size(130, 56);
+            tbGraviton.TabIndex = 3;
+            tbGraviton.Scroll += tbGraviton_Scroll;
+            // 
+            // tbGraviton2
+            // 
+            tbGraviton2.Location = new Point(446, 448);
+            tbGraviton2.Maximum = 100;
+            tbGraviton2.Name = "tbGraviton2";
+            tbGraviton2.Size = new Size(130, 56);
+            tbGraviton2.TabIndex = 4;
+            tbGraviton2.Scroll += tbGraviton2_Scroll;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 516);
+            Controls.Add(tbGraviton2);
+            Controls.Add(tbGraviton);
             Controls.Add(lblDirection);
             Controls.Add(tbDirection);
             Controls.Add(picDisplay);
@@ -81,6 +105,8 @@
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)picDisplay).EndInit();
             ((System.ComponentModel.ISupportInitialize)tbDirection).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbGraviton).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbGraviton2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -91,5 +117,7 @@
         private System.Windows.Forms.Timer timer1;
         private TrackBar tbDirection;
         private Label lblDirection;
+        private TrackBar tbGraviton;
+        private TrackBar tbGraviton2;
     }
 }
