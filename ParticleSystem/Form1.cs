@@ -7,10 +7,8 @@ namespace ParticleSystem
     {
         List<Emitter> emitters = new List<Emitter>();
         Emitter emitter;
-       
 
         GravityPoint point1;
-        GravityPoint point2;
 
         public Form1()
         {
@@ -37,14 +35,8 @@ namespace ParticleSystem
                 X = picDisplay.Width / 2 + 100,
                 Y = picDisplay.Height / 2,
             };
-            point2 = new GravityPoint
-            {
-                X = picDisplay.Width / 2 - 100,
-                Y = picDisplay.Height / 2,
-            };
 
             emitter.impactPoints.Add(point1);
-            emitter.impactPoints.Add(point2);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -67,8 +59,8 @@ namespace ParticleSystem
                 emitter.MousePositionY = e.Y;
             }
 
-            point2.X = e.X;
-            point2.Y = e.Y;
+            point1.X = e.X;
+            point1.Y = e.Y;
         }
 
     }
