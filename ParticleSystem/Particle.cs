@@ -21,6 +21,8 @@ namespace ParticleSystem
 
         public static Random rand = new Random();
 
+        public bool Inside = false;
+
         public Particle()
         {
 
@@ -53,6 +55,7 @@ namespace ParticleSystem
         public Color FromColor;
         public Color ToColor;
 
+
         public static Color MixColor(Color color1, Color color2, float k)
         {
             return Color.FromArgb(
@@ -67,7 +70,17 @@ namespace ParticleSystem
         {
             float k = Math.Min(1f, Life / 100);
 
-            var color = MixColor(ToColor, FromColor, k);
+            Color color;
+
+            if (Inside)
+            {
+                color = Color.Red; // внутри радара — красный
+            }
+            else
+            {
+                color = MixColor(ToColor, FromColor, k); // обычный цвет
+            }
+
             var b = new SolidBrush(color);
 
             g.FillEllipse(b, X - Radius, Y - Radius, Radius * 2, Radius * 2);

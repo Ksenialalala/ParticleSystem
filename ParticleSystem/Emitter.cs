@@ -107,6 +107,7 @@ namespace ParticleSystem
 
         public class GravityPoint : IImpactPoint
         {
+            public int Count = 0;
             public int Power = 100; 
 
             public override void ImpactParticle(Particle particle)
@@ -117,9 +118,12 @@ namespace ParticleSystem
                 double r = Math.Sqrt(gX * gX + gY * gY); 
                 if (r + particle.Radius < Power / 2) 
                 {
-                    float r2 = (float)Math.Max(100, gX * gX + gY * gY);
-                    particle.SpeedX += gX * Power / r2;
-                    particle.SpeedY += gY * Power / r2;
+                    Count++;
+                    particle.Inside = true;
+                }
+                else
+                {
+                    particle.Inside = false; 
                 }
             }
 
@@ -137,7 +141,7 @@ namespace ParticleSystem
                 stringFormat.Alignment = StringAlignment.Center;
                 stringFormat.LineAlignment = StringAlignment.Center;
 
-                var text = $"{Power}";
+                var text = $"{Count}";
                 var font = new Font("Verdana", 10);
 
                 var size = g.MeasureString(text, font);
@@ -158,23 +162,11 @@ namespace ParticleSystem
                     Y,
                     stringFormat
                 );
+                Count = 0;
             }
         }
 
-        public class AntiGravityPoint : IImpactPoint
-        {
-            public int Power = 100; 
-
-            public override void ImpactParticle(Particle particle)
-            {
-                float gX = X - particle.X;
-                float gY = Y - particle.Y;
-                float r2 = (float)Math.Max(100, gX * gX + gY * gY);
-
-                particle.SpeedX -= gX * Power / r2; 
-                particle.SpeedY -= gY * Power / r2; 
-            }
-        }
+        
 
         public virtual void ResetParticle(Particle particle)
         {
