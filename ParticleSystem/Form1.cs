@@ -17,15 +17,30 @@ namespace ParticleSystem
 
             this.emitter = new Emitter
             {
-                Direction = 0,
-                Spreading = 10,
-                SpeedMin = 10,
-                SpeedMax = 10,
-                ColorFrom = Color.Gold,
-                ColorTo = Color.FromArgb(0, Color.Red),
-                ParticlesPerTick = 10,
                 X = picDisplay.Width / 2,
-                Y = picDisplay.Height / 2,
+                Y = picDisplay.Height - 180, 
+
+                Direction = 90,
+
+                Spreading = 140,
+
+                SpeedMin = 8,
+                SpeedMax = 12,
+
+                GravitationY = 0.35f,
+
+                RadiusMin = 3,
+                RadiusMax = 10,
+
+                LifeMin = 80,
+                LifeMax = 120,
+
+                ParticlesPerTick = 22, 
+
+                ParticlesCount = 700, 
+
+                ColorFrom = Color.Gray,
+                ColorTo = Color.FromArgb(0, Color.Gray)
             };
 
             emitters.Add(this.emitter);
