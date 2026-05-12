@@ -121,7 +121,11 @@ namespace ParticleSystem
                     Count++;
                     particle.Inside = true;
                 }
-                
+                else
+                {
+                    particle.Inside = false; 
+                }
+
             }
 
             public override void Render(Graphics g)
