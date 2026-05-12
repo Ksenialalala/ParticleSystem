@@ -15,6 +15,8 @@ namespace ParticleSystem
         public Form1()
         {
             InitializeComponent();
+            picDisplay.MouseWheel += picDisplay_MouseWheel;
+            picDisplay.Focus();
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
 
             this.emitter = new Emitter
@@ -107,5 +109,18 @@ namespace ParticleSystem
             point1.Y = e.Y;
         }
 
+        private void picDisplay_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (e.Delta > 0)
+                point1.Power += 10;
+            else
+                point1.Power -= 10;
+
+            if (point1.Power < 20)
+                point1.Power = 20;
+
+            if (point1.Power > 200)
+                point1.Power = 200;
+        }
     }
 }
