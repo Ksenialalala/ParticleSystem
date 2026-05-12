@@ -22,6 +22,8 @@ namespace ParticleSystem
         public static Random rand = new Random();
 
         public bool Inside = false;
+        public Color FromColor;
+        public Color ToColor;
 
         public Particle()
         {
@@ -52,8 +54,7 @@ namespace ParticleSystem
 
     public class ParticleColorful : Particle
     {
-        public Color FromColor;
-        public Color ToColor;
+        
 
 
         public static Color MixColor(Color color1, Color color2, float k)
@@ -74,11 +75,11 @@ namespace ParticleSystem
 
             if (Inside)
             {
-                color = Color.Red; // внутри радара — красный
+                color = Color.Red; 
             }
             else
             {
-                color = MixColor(ToColor, FromColor, k); // обычный цвет
+                color = MixColor(ToColor, FromColor, k); 
             }
 
             var b = new SolidBrush(color);

@@ -121,10 +121,7 @@ namespace ParticleSystem
                     Count++;
                     particle.Inside = true;
                 }
-                else
-                {
-                    particle.Inside = false; 
-                }
+                
             }
 
             public override void Render(Graphics g)
@@ -170,6 +167,7 @@ namespace ParticleSystem
 
         public virtual void ResetParticle(Particle particle)
         {
+
             particle.Life = Particle.rand.Next(LifeMin, LifeMax);
 
             particle.X = X;

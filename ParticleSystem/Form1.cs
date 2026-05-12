@@ -10,6 +10,8 @@ namespace ParticleSystem
 
         GravityPoint point1;
 
+        RainbowPoint r1, r2, r3, r4, r5, r6, r7;
+
         public Form1()
         {
             InitializeComponent();
@@ -52,6 +54,33 @@ namespace ParticleSystem
             };
 
             emitter.impactPoints.Add(point1);
+
+            int baseX = picDisplay.Width / 2 - 180;
+            int y = picDisplay.Height - 60;
+
+            r1 = new RainbowPoint { X = baseX + 0 * 60, Y = y, Power = 80 };
+            r2 = new RainbowPoint { X = baseX + 1 * 60, Y = y, Power = 80 };
+            r3 = new RainbowPoint { X = baseX + 2 * 60, Y = y, Power = 80 };
+            r4 = new RainbowPoint { X = baseX + 3 * 60, Y = y, Power = 80 };
+            r5 = new RainbowPoint { X = baseX + 4 * 60, Y = y, Power = 80 };
+            r6 = new RainbowPoint { X = baseX + 5 * 60, Y = y, Power = 80 };
+            r7 = new RainbowPoint { X = baseX + 6 * 60, Y = y, Power = 80 };
+
+            r1.RadarColor = Color.Red;
+            r2.RadarColor = Color.Orange;
+            r3.RadarColor = Color.Yellow;
+            r4.RadarColor = Color.Green;
+            r5.RadarColor = Color.Blue;
+            r6.RadarColor = Color.Indigo;
+            r7.RadarColor = Color.Violet;
+
+            emitter.impactPoints.Add(r1);
+            emitter.impactPoints.Add(r2);
+            emitter.impactPoints.Add(r3);
+            emitter.impactPoints.Add(r4);
+            emitter.impactPoints.Add(r5);
+            emitter.impactPoints.Add(r6);
+            emitter.impactPoints.Add(r7);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
