@@ -31,7 +31,9 @@
             components = new System.ComponentModel.Container();
             picDisplay = new PictureBox();
             timer1 = new System.Windows.Forms.Timer(components);
+            tbParticles = new TrackBar();
             ((System.ComponentModel.ISupportInitialize)picDisplay).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbParticles).BeginInit();
             SuspendLayout();
             // 
             // picDisplay
@@ -49,21 +51,37 @@
             timer1.Interval = 40;
             timer1.Tick += timer1_Tick;
             // 
+            // tbParticles
+            // 
+            tbParticles.Location = new Point(28, 479);
+            tbParticles.Maximum = 50;
+            tbParticles.Minimum = 1;
+            tbParticles.Name = "tbParticles";
+            tbParticles.Size = new Size(166, 56);
+            tbParticles.TabIndex = 1;
+            tbParticles.TickFrequency = 5;
+            tbParticles.Value = 10;
+            tbParticles.Scroll += tbParticles_Scroll;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(798, 483);
+            ClientSize = new Size(798, 547);
+            Controls.Add(tbParticles);
             Controls.Add(picDisplay);
             Name = "Form1";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)picDisplay).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbParticles).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private PictureBox picDisplay;
         private System.Windows.Forms.Timer timer1;
+        private TrackBar tbParticles;
     }
 }

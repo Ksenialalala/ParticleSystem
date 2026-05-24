@@ -22,7 +22,7 @@ namespace ParticleSystem
             this.emitter = new Emitter
             {
                 X = picDisplay.Width / 2,
-                Y = picDisplay.Height - 180, 
+                Y = picDisplay.Height - 180,
 
                 Direction = 90,
 
@@ -39,9 +39,9 @@ namespace ParticleSystem
                 LifeMin = 80,
                 LifeMax = 120,
 
-                ParticlesPerTick = 22, 
+                ParticlesPerTick = 22,
 
-                ParticlesCount = 700, 
+                ParticlesCount = 700,
 
                 ColorFrom = Color.Gray,
                 ColorTo = Color.FromArgb(0, Color.Gray)
@@ -121,6 +121,11 @@ namespace ParticleSystem
 
             if (point1.Power > 200)
                 point1.Power = 200;
+        }
+
+        private void tbParticles_Scroll(object sender, EventArgs e)
+        {
+            emitter.ParticlesPerTick = tbParticles.Value;
         }
     }
 }
