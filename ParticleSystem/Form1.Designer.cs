@@ -32,6 +32,7 @@
             picDisplay = new PictureBox();
             timer1 = new System.Windows.Forms.Timer(components);
             tbParticles = new TrackBar();
+            lblParticles = new Label();
             ((System.ComponentModel.ISupportInitialize)picDisplay).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tbParticles).BeginInit();
             SuspendLayout();
@@ -53,7 +54,7 @@
             // 
             // tbParticles
             // 
-            tbParticles.Location = new Point(28, 479);
+            tbParticles.Location = new Point(26, 512);
             tbParticles.Maximum = 50;
             tbParticles.Minimum = 1;
             tbParticles.Name = "tbParticles";
@@ -63,11 +64,21 @@
             tbParticles.Value = 10;
             tbParticles.Scroll += tbParticles_Scroll;
             // 
+            // lblParticles
+            // 
+            lblParticles.AutoSize = true;
+            lblParticles.Location = new Point(23, 480);
+            lblParticles.Name = "lblParticles";
+            lblParticles.Size = new Size(50, 20);
+            lblParticles.TabIndex = 2;
+            lblParticles.Text = "label1";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(798, 547);
+            ClientSize = new Size(798, 580);
+            Controls.Add(lblParticles);
             Controls.Add(tbParticles);
             Controls.Add(picDisplay);
             Name = "Form1";
@@ -83,5 +94,6 @@
         private PictureBox picDisplay;
         private System.Windows.Forms.Timer timer1;
         private TrackBar tbParticles;
+        private Label lblParticles;
     }
 }

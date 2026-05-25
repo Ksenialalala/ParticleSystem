@@ -7,8 +7,8 @@ namespace ParticleSystem
 {
     public class Particle
     {
-        public int Radius; 
-        public float X; 
+        public int Radius;
+        public float X;
         public float Y;
 
         public float Direction;
@@ -21,7 +21,6 @@ namespace ParticleSystem
 
         public static Random rand = new Random();
 
-        public bool Inside = false;
         public Color FromColor;
         public Color ToColor;
 
@@ -54,8 +53,6 @@ namespace ParticleSystem
 
     public class ParticleColorful : Particle
     {
-        
-
 
         public static Color MixColor(Color color1, Color color2, float k)
         {
@@ -71,16 +68,7 @@ namespace ParticleSystem
         {
             float k = Math.Min(1f, Life / 100);
 
-            Color color;
-
-            if (Inside)
-            {
-                color = Color.Red; 
-            }
-            else
-            {
-                color = MixColor(ToColor, FromColor, k); 
-            }
+            Color color = MixColor(ToColor, FromColor, k);
 
             var b = new SolidBrush(color);
 

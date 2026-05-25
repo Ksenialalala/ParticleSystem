@@ -17,19 +17,19 @@ namespace ParticleSystem
 
         public int ParticlesCount = 500;
 
-        public int X; 
-        public int Y; 
-        public int Direction = 0; 
-        public int Spreading = 360; 
-        public int SpeedMin = 1; 
-        public int SpeedMax = 10; 
-        public int RadiusMin = 2; 
-        public int RadiusMax = 10; 
-        public int LifeMin = 20; 
+        public int X;
+        public int Y;
+        public int Direction = 0;
+        public int Spreading = 360;
+        public int SpeedMin = 1;
+        public int SpeedMax = 10;
+        public int RadiusMin = 2;
+        public int RadiusMax = 10;
+        public int LifeMin = 20;
         public int LifeMax = 100;
         public int ParticlesPerTick = 1;
 
-        public Color ColorFrom = Color.White; 
+        public Color ColorFrom = Color.White;
         public Color ColorTo = Color.FromArgb(0, Color.Black);
 
         public void UpdateState()
@@ -42,8 +42,8 @@ namespace ParticleSystem
                 {
                     if (particlesToCreate > 0)
                     {
-                        
-                        particlesToCreate -= 1; 
+
+                        particlesToCreate -= 1;
                         ResetParticle(particle);
                     }
                 }
@@ -60,7 +60,7 @@ namespace ParticleSystem
                     particle.SpeedX += GravitationX;
                     particle.SpeedY += GravitationY;
 
-                    
+
                 }
             }
 
@@ -88,86 +88,15 @@ namespace ParticleSystem
 
         public abstract class IImpactPoint
         {
-            public float X; 
+            public float X;
             public float Y;
 
             public abstract void ImpactParticle(Particle particle);
 
-            public virtual void Render(Graphics g)
-            {
-                g.FillEllipse(
-                        new SolidBrush(Color.Red),
-                        X - 5,
-                        Y - 5,
-                        10,
-                        10
-                    );
-            }
+            public abstract void Render(Graphics g);
+  
         }
 
-        public class GravityPoint : IImpactPoint
-        {
-            public int Count = 0;
-            public int Power = 100; 
-
-            public override void ImpactParticle(Particle particle)
-            {
-                float gX = X - particle.X;
-                float gY = Y - particle.Y;
-
-                double r = Math.Sqrt(gX * gX + gY * gY); 
-                if (r + particle.Radius < Power / 2) 
-                {
-                    Count++;
-                    particle.Inside = true;
-                }
-                else
-                {
-                    particle.Inside = false; 
-                }
-
-            }
-
-            public override void Render(Graphics g)
-            {
-                g.DrawEllipse(
-                       new Pen(Color.Red),
-                       X - Power / 2,
-                       Y - Power / 2,
-                       Power,
-                       Power
-                   );
-
-                var stringFormat = new StringFormat();
-                stringFormat.Alignment = StringAlignment.Center;
-                stringFormat.LineAlignment = StringAlignment.Center;
-
-                var text = $"{Count}";
-                var font = new Font("Verdana", 10);
-
-                var size = g.MeasureString(text, font);
-
-                g.FillRectangle(
-                    new SolidBrush(Color.Red),
-                    X - size.Width / 2, 
-                    Y - size.Height / 2,
-                    size.Width,
-                    size.Height
-                );
-
-                g.DrawString(
-                    text,
-                    font,
-                    new SolidBrush(Color.White),
-                    X,
-                    Y,
-                    stringFormat
-                );
-                Count = 0;
-            }
-        }
-
-        
 
         public virtual void ResetParticle(Particle particle)
         {
@@ -191,17 +120,17 @@ namespace ParticleSystem
 
         public class TopEmitter : Emitter
         {
-            public int Width; 
+            public int Width;
 
             public override void ResetParticle(Particle particle)
             {
-                base.ResetParticle(particle); 
-                
-                particle.X = Particle.rand.Next(Width); 
-                particle.Y = 0;  
+                base.ResetParticle(particle);
 
-                particle.SpeedY = 1; 
-                particle.SpeedX = Particle.rand.Next(-2, 2);  
+                particle.X = Particle.rand.Next(Width);
+                particle.Y = 0;
+
+                particle.SpeedY = 1;
+                particle.SpeedX = Particle.rand.Next(-2, 2);
             }
         }
 
