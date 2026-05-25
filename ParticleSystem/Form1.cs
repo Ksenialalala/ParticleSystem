@@ -128,6 +128,8 @@ namespace ParticleSystem
         private void tbParticles_Scroll(object sender, EventArgs e)
         {
             emitter.ParticlesPerTick = tbParticles.Value;
+
+            lblParticles.Text = $"Частиц: {tbParticles.Value}";
         }
     }
 }

@@ -69,9 +69,9 @@
             lblParticles.AutoSize = true;
             lblParticles.Location = new Point(23, 480);
             lblParticles.Name = "lblParticles";
-            lblParticles.Size = new Size(50, 20);
+            lblParticles.Size = new Size(61, 20);
             lblParticles.TabIndex = 2;
-            lblParticles.Text = "label1";
+            lblParticles.Text = "Частиц:";
             // 
             // Form1
             // 
