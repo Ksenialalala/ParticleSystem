@@ -8,6 +8,8 @@ namespace ParticleSystem
         List<Emitter> emitters = new List<Emitter>();
         Emitter emitter;
 
+        RadarPoint point1;
+        RadarPoint r1, r2, r3, r4, r5, r6, r7;
 
         public Form1()
         {
@@ -46,12 +48,43 @@ namespace ParticleSystem
 
             emitters.Add(this.emitter);
 
+            point1 = new RadarPoint
+            {
+                X = picDisplay.Width / 2 + 100,
+                Y = picDisplay.Height / 2,
+                Power = 100,
+                RadarColor = Color.Red,
+                ShowCount = true
+            };
 
+            emitter.impactPoints.Add(point1);
 
             int baseX = picDisplay.Width / 2 - 180;
             int y = picDisplay.Height - 60;
 
+            r1 = new RadarPoint { X = baseX + 0 * 60, Y = y, Power = 50 };
+            r2 = new RadarPoint { X = baseX + 1 * 60, Y = y, Power = 50 };
+            r3 = new RadarPoint { X = baseX + 2 * 60, Y = y, Power = 50 };
+            r4 = new RadarPoint { X = baseX + 3 * 60, Y = y, Power = 50 };
+            r5 = new RadarPoint { X = baseX + 4 * 60, Y = y, Power = 50 };
+            r6 = new RadarPoint { X = baseX + 5 * 60, Y = y, Power = 50 };
+            r7 = new RadarPoint { X = baseX + 6 * 60, Y = y, Power = 50 };
 
+            r1.RadarColor = Color.Red;
+            r2.RadarColor = Color.Orange;
+            r3.RadarColor = Color.Yellow;
+            r4.RadarColor = Color.Green;
+            r5.RadarColor = Color.Blue;
+            r6.RadarColor = Color.Indigo;
+            r7.RadarColor = Color.Violet;
+
+            emitter.impactPoints.Add(r1);
+            emitter.impactPoints.Add(r2);
+            emitter.impactPoints.Add(r3);
+            emitter.impactPoints.Add(r4);
+            emitter.impactPoints.Add(r5);
+            emitter.impactPoints.Add(r6);
+            emitter.impactPoints.Add(r7);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -74,12 +107,22 @@ namespace ParticleSystem
                 emitter.MousePositionY = e.Y;
             }
 
-
+            point1.X = e.X;
+            point1.Y = e.Y;
         }
 
         private void picDisplay_MouseWheel(object sender, MouseEventArgs e)
         {
+            if (e.Delta > 0)
+                point1.Power += 10;
+            else
+                point1.Power -= 10;
 
+            if (point1.Power < 20)
+                point1.Power = 20;
+
+            if (point1.Power > 300)
+                point1.Power = 300;
         }
 
         private void tbParticles_Scroll(object sender, EventArgs e)

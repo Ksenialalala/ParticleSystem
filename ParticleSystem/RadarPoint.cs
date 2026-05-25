@@ -36,8 +36,14 @@ namespace ParticleSystem
             {
                 foreach (var particle in detectedParticles)
                 {
-                    g.DrawLine(pen, particle.X - 4, particle.Y, particle.X + 4, particle.Y);
-                    g.DrawLine(pen, particle.X, particle.Y - 4, particle.X, particle.Y + 4);
+                    int markerRadius = particle.Radius + 3;
+                    g.DrawEllipse(
+                        pen,
+                        particle.X - markerRadius,
+                        particle.Y - markerRadius,
+                        markerRadius * 2,
+                        markerRadius * 2
+                    );
                 }
             }
 
